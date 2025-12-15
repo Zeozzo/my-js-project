@@ -1,5 +1,6 @@
 import Book from "./classes/Book.js";
 import { loadBooks } from "./services/libraryService.js";
+import { getRandomQuote } from "./api/quotes.js";
 
 
 const pokemon = new Book("Pokémon Adventures", "Hidenori Kusaka", 192);
@@ -24,4 +25,14 @@ async function run() {
     }
 }
 
+async function showQuote() {
+    try {
+        const quote = await getRandomQuote();
+        console.log(`${quote.text} - ${quote.author}`);
+    } catch (error) {
+        console.error("Error fetching quote:", error);
+    }
+}
+
 run();
+showQuote();
